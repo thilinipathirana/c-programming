@@ -1,0 +1,40 @@
+using System;
+
+class Product
+{
+    // Properties
+    public string ProductName { get; }
+    public double Price { get; }
+
+    // Parameterized Constructor
+    public Product(string productName, double price)
+    {
+        ProductName = productName;
+        Price = price;
+    }
+
+    // Method to display product details
+    public void DisplayProductDetails()
+    {
+        Console.WriteLine($"Product: {ProductName}");
+        Console.WriteLine($"Price: {Price:C}\n");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Instantiate Product objects using the constructor
+        Product product1 = new Product("Laptop", 1200.0);
+        Product product2 = new Product("Smartphone", 800.0);
+
+        // Display product details
+        Console.WriteLine("Product Details:");
+        product1.DisplayProductDetails();
+        product2.DisplayProductDetails();
+
+        // Keep the console window open
+        Console.ReadLine();
+    }
+}
