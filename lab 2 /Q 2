@@ -1,0 +1,56 @@
+using System;
+
+class BankAccount
+{
+    // Properties
+    public string AccountNumber { get; }
+    public double Balance { get; private set; }
+
+    // Constructor
+    public BankAccount(string accountNumber, double initialBalance)
+    {
+        AccountNumber = accountNumber;
+        Balance = initialBalance;
+    }
+
+    // Method to deposit money
+    public void Deposit(double amount)
+    {
+        if (amount > 0)
+        {
+            Balance += amount;
+            Console.WriteLine($"Deposit successful. New balance: {Balance:C}");
+        }
+        else
+        {
+            Console.WriteLine("Invalid deposit amount. Please enter a positive amount.");
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Instantiate a BankAccount object
+        BankAccount myAccount = new BankAccount("123456789", 1000.0);
+
+        // Display initial balance
+        Console.WriteLine($"Initial balance: {myAccount.Balance:C}");
+
+        // Perform a deposit
+        Console.Write("Enter deposit amount: ");
+        double depositAmount;
+        if (double.TryParse(Console.ReadLine(), out depositAmount))
+        {
+            myAccount.Deposit(depositAmount);
+        }
+        else
+        {
+            Console.WriteLine("Invalid input. Please enter a valid number for the deposit amount.");
+        }
+
+        // Keep the console window open
+        Console.ReadLine();
+    }
+}
