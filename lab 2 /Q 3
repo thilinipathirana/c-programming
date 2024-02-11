@@ -1,0 +1,59 @@
+using System;
+
+class TemperatureTracker
+{
+    // Array to store daily temperatures
+    private double[] dailyTemperatures;
+
+    // Constructor
+    public TemperatureTracker(int numberOfDays)
+    {
+        dailyTemperatures = new double[numberOfDays];
+    }
+
+    // Method to input temperatures for each day
+    public void InputTemperatures()
+    {
+        for (int day = 0; day < dailyTemperatures.Length; day++)
+        {
+            Console.Write($"Enter temperature for Day {day + 1}: ");
+            if (double.TryParse(Console.ReadLine(), out double temperature))
+            {
+                dailyTemperatures[day] = temperature;
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a valid temperature.");
+                day--; // Decrement day to re-enter the temperature for the current day
+            }
+        }
+    }
+
+    // Method to display the weekly temperature report
+    public void DisplayWeeklyReport()
+    {
+        Console.WriteLine("\nWeekly Temperature Report:");
+        for (int day = 0; day < dailyTemperatures.Length; day++)
+        {
+            Console.WriteLine($"Day {day + 1}: {dailyTemperatures[day]}°C");
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Instantiate a TemperatureTracker object for a week (7 days)
+        TemperatureTracker weeklyTemperatures = new TemperatureTracker(7);
+
+        // Input temperatures
+        weeklyTemperatures.InputTemperatures();
+
+        // Display the weekly temperature report
+        weeklyTemperatures.DisplayWeeklyReport();
+
+        // Keep the console window open
+        Console.ReadLine();
+    }
+}
